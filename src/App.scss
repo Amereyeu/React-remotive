@@ -1,0 +1,325 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* loader animation */
+.animation-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .boom-container {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    align-items: center;
+
+    .shape {
+      display: inline-block;
+      position: relative;
+      opacity: 0;
+      transform-origin: center center;
+
+      &.triangle {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        transform-origin: 50% 80%;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        animation-iteration-count: infinite;
+        margin-left: -15px;
+        border-width: 0 2.5px 5px 2.5px;
+        border-color: transparent transparent #1e6cd3 transparent;
+        animation-name: boom-triangle;
+
+        &.big {
+          margin-left: -25px;
+          border-width: 0 5px 10px 5px;
+          border-color: transparent transparent #0c31aa transparent;
+          animation-name: boom-triangle-big;
+        }
+      }
+
+      &.disc {
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+        background-color: #14a6e9;
+        animation-name: boom-disc;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        animation-iteration-count: infinite;
+      }
+
+      &.circle {
+        width: 20px;
+        height: 20px;
+        animation-name: boom-circle;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        animation-iteration-count: infinite;
+        border-radius: 100%;
+        margin-left: -30px;
+
+        &.white {
+          border: 1px solid #ddd;
+        }
+
+        &.big {
+          width: 40px;
+          height: 40px;
+          margin-left: 0px;
+
+          &.white {
+            border: 2px solid #ddd;
+          }
+        }
+      }
+
+      &:after {
+        background-color: rgba(178, 215, 232, 0.2);
+      }
+    }
+
+    .shape {
+      &.triangle,
+      &.circle,
+      &.circle.big,
+      &.disc {
+        animation-delay: 0.38s;
+        animation-duration: 2s;
+      }
+
+      &.circle {
+        animation-delay: 0.6s;
+      }
+    }
+
+    &.second {
+      left: 485px;
+      top: 155px;
+      .shape {
+        &.triangle,
+        &.circle,
+        &.circle.big,
+        &.disc {
+          animation-delay: 1.9s;
+        }
+        &.circle {
+          animation-delay: 2.15s;
+        }
+      }
+    }
+  }
+}
+
+@keyframes boom-circle {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+    transform: scale(3);
+  }
+  100% {
+  }
+}
+
+@keyframes boom-triangle-big {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0;
+    transform: scale(2.5) translate(50px, -50px) rotate(360deg);
+  }
+  100% {
+  }
+}
+
+@keyframes boom-triangle {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0;
+    transform: scale(3) translate(20px, 40px) rotate(360deg);
+  }
+
+  100% {
+  }
+}
+
+@keyframes boom-disc {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+    transform: scale(2) translate(-70px, -30px);
+  }
+  100% {
+  }
+}
+
+/* company logo */
+.company {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+/* data */
+#table {
+  margin: 0 auto 2rem;
+  color: #000;
+  border: 1px solid #000;
+  border-collapse: collapse;
+
+  td,
+  th {
+    text-align: left;
+    padding: 0.4rem 1rem;
+  }
+
+  th {
+    background: #000;
+    color: #fff;
+  }
+
+  tr:nth-child(odd) {
+    background: #eee;
+  }
+
+  h2 {
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  h4 {
+    color: #555;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+
+  .tags {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+
+    &__item {
+      padding: 0.5rem;
+      margin: 0.5rem;
+      background: rgb(0, 0, 0);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      color: #fff;
+    }
+  }
+
+  .description {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+  thead {
+    position: absolute;
+    opacity: 0;
+  }
+
+  tr {
+    margin: 1rem 0;
+  }
+
+  td {
+    border-bottom: 1px solid #fff;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    &:last-child {
+      border: 0;
+    }
+
+    &::before {
+      font-weight: bold;
+    }
+
+    &:nth-of-type(1)::before {
+      content: "Position";
+    }
+
+    &:nth-of-type(2)::before {
+      content: "Category";
+    }
+
+    &:nth-of-type(3)::before {
+      content: "Job Type";
+    }
+
+    &:nth-of-type(4)::before {
+      content: "Published";
+    }
+
+    &:nth-of-type(5)::before {
+      content: "Salary";
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: table-cell;
+}
+
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  flex-wrap: wrap;
+
+  .page-item {
+    padding: 1rem;
+
+    .page-link {
+      color: #000;
+      cursor: pointer;
+    }
+  }
+}
